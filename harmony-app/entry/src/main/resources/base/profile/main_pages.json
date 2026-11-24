@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/LoginPage",
+    "pages/MainTabs",
+    "pages/Detail",
+    "pages/MapPage",
+    "pages/Guardian",
+    "widget/pages/WidgetCard"
+  ]
+}

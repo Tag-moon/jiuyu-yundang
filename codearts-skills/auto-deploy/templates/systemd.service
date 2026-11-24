@@ -1,0 +1,21 @@
+[Unit]
+Description=Auto-Deployed: {{APP_NAME}}
+After=network.target
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory={{APP_DIR}}
+EnvironmentFile=-{{ENV_FILE}}
+Environment=PORT={{PORT}}
+ExecStart=/bin/bash -lc '{{START_COMMAND}}'
+Restart=on-failure
+RestartSec=5s
+StartLimitInterval=30
+StartLimitBurst=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+{
+  "name": "jiuyu-yundang-cloud-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "九曲云档赛题一云上 API：RDS/Redis/OBS 适配、AI 问答代理、云同步",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "import": "node ../../scripts/import-heritages.js"
+  },
+  "optionalDependencies": {
+    "mysql2": "^3.11.0",
+    "redis": "^4.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

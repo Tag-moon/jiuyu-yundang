@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.deploy
+.auto-deploy/
+*.log
+.DS_Store
+harmony-app/entry/build/
+harmony-app/.idea/
+.sqlite
+
+# 本地构建与临时产物
+dist-static/
+web.bak-1118/
+.auto-deploy2.zip
+.codeartsdoer/

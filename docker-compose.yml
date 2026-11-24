@@ -1,0 +1,9 @@
+services:
+  jiuyu-api:
+    build: .
+    container_name: jiuyu-yundang-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env

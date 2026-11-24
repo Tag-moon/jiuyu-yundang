@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    container_name: {{APP_NAME}}
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "{{PORT}}:{{PORT}}"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:{{PORT}}{{HEALTH_ENDPOINT}} || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

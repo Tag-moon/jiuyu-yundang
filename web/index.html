@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>九曲云档 · 黄河文化智能研学助手</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">九</div>
+      <div>
+        <div class="brand-name">九曲云档</div>
+        <div class="brand-sub">黄河文化智能研学助手</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" id="themeToggle" aria-pressed="false" title="切换宣纸 / 夜墨主题">
+        <span class="theme-glyph" aria-hidden="true">☀</span><span class="theme-label">宣纸</span>
+      </button>
+      <span class="pill pill-cloud">华为云赛题一</span>
+      <span class="pill" id="envPill">正在检测服务…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <nav class="side" aria-label="主导航">
+      <div class="side-caption">研学四卷</div>
+      <button class="nav-item active" data-tab="discover"><span class="nav-icon">寻</span><span>遗址检索</span></button>
+      <button class="nav-item" data-tab="chat"><span class="nav-icon">问</span><span>守护灵问答</span></button>
+      <button class="nav-item" data-tab="route"><span class="nav-icon">路</span><span>研学路线</span></button>
+      <button class="nav-item" data-tab="cloud"><span class="nav-icon">云</span><span>云上运行</span></button>
+      <div class="side-footer">
+        <div class="side-footer-title">演示账号</div>
+        <input id="userId" value="demo-user" aria-label="演示用户" />
+        <div class="side-footer-hint">用于演示云端收藏与笔记同步</div>
+      </div>
+    </nav>
+
+    <section class="content">
+      <div class="tab-panel active" id="panel-discover">
+        <div class="hero" id="hero">
+          <img class="hero-map" src="assets/hero/river-scroll.jpg" alt="水墨青绿长卷：黄河河南段山川城池" />
+          <div class="hero-scrim" aria-hidden="true"></div>
+          <div class="hero-mist hero-mist-a" aria-hidden="true"></div>
+          <div class="hero-mist hero-mist-b" aria-hidden="true"></div>
+          <div class="hero-sheen" aria-hidden="true"></div>
+          <canvas class="hero-dust" aria-hidden="true"></canvas>
+          <div class="hero-light" aria-hidden="true"></div>
+          <div class="hero-frame" aria-hidden="true"></div>
+          <div class="hero-veil" aria-hidden="true"></div>
+          <div class="hero-copy">
+            <div class="hero-kicker">黄河文化智能研学助手</div>
+            <h2 class="hero-title">大河文脉<span class="hero-dot">·</span>云上研学</h2>
+            <p class="hero-sub">自仰韶彩陶至隋唐神都，沿黄河河南段梳理五千年文明序列</p>
+            <div class="hero-meta">
+              <span class="hero-seal" aria-hidden="true"><span>九曲</span><span>云档</span></span>
+              <span class="hero-fact">河南段 · 五十六处文明坐标 · 九城联展</span>
+            </div>
+          </div>
+          <div class="hero-poem" aria-hidden="true">九曲黄河万里沙<br />浪淘风簸自天涯<span class="poem-seal">河</span></div>
+        </div>
+
+        <div class="scroll-divider reveal" aria-hidden="true"><span class="axis"></span><span class="thread"></span><span class="axis"></span></div>
+
+        <div class="page-head reveal">
+          <div>
+            <div class="page-kicker">第一卷 · 遗址检索</div>
+            <h1>黄河河南段文化遗存</h1>
+            <p>档案数据来自内置 56 处遗址，支持关键词与年代、类型、城市三维筛选。</p>
+          </div>
+          <div class="stat-chip" id="archiveCount">加载中…</div>
+        </div>
+
+        <div class="filter-bar reveal">
+          <input id="keyword" placeholder="搜索遗址、文物、关键词，例如：彩陶 / 石窟 / 殷墟" />
+          <select id="eraFilter" aria-label="年代筛选"><option>全部</option></select>
+          <select id="typeFilter" aria-label="类型筛选"><option>全部</option></select>
+          <select id="cityFilter" aria-label="城市筛选"><option>全部</option></select>
+          <button class="primary" id="searchBtn">检索档案</button>
+        </div>
+
+        <div class="result-meta">
+          <span id="resultCount">正在加载档案…</span>
+          <span class="dot">·</span>
+          <span>点击册页查看完整档案与关联推荐</span>
+        </div>
+        <div class="card-grid" id="heritageGrid"></div>
+        <div class="pagination">
+          <button id="prevPage">上一页</button>
+          <span id="pageLabel">1 / 1</span>
+          <button id="nextPage">下一页</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-chat">
+        <div class="page-head">
+          <div>
+            <div class="page-kicker">第二卷 · 守护灵问答</div>
+            <h1>黄河守护灵</h1>
+            <p>基于档案检索与大模型能力回答，返回内容附带可追溯来源。</p>
+          </div>
+          <span class="pill" id="chatMode">等待提问</span>
+        </div>
+        <div class="chat-shell">
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg assistant">
+              <div class="msg-avatar">灵</div>
+              <div class="msg-body">
+                <div class="msg-name">黄河守护灵</div>
+                <div class="msg-text">我是九曲云档的研学向导。可以问我某处遗址的来历，也可以让我替你排一条路线。</div>
+              </div>
+            </div>
+          </div>
+          <div class="suggestions" id="suggestions">
+            <button>龙门石窟有什么看点</button>
+            <button>推荐一条洛阳一日路线</button>
+            <button>仰韶文化是什么意思</button>
+            <button>殷墟为什么重要</button>
+          </div>
+          <div class="chat-input">
+            <input id="chatInput" placeholder="输入你的问题，例如：推荐一条洛阳一日路线" />
+            <button class="primary" id="chatSend">发送</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-route">
+        <div class="page-head">
+          <div>
+            <div class="page-kicker">第三卷 · 研学路线</div>
+            <h1>AI 研学路线</h1>
+            <p>按城市、年代与主题生成路线，适合答辩现场演示。</p>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <input id="routeKeyword" placeholder="主题关键词，例如：石窟、都城、彩陶" />
+          <select id="routeCity" aria-label="路线城市"><option value="">全部城市</option></select>
+          <select id="routeEra" aria-label="路线年代"><option value="">全部年代</option></select>
+          <button class="primary" id="routeBtn">生成路线</button>
+        </div>
+        <div class="route-result" id="routeResult">
+          <div class="empty-state">设置条件后点击「生成路线」</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-cloud">
+        <div class="page-head">
+          <div>
+            <div class="page-kicker">第四卷 · 云上运行</div>
+            <h1>云上运行状态</h1>
+            <p>该面板用于证明应用真实运行在华为云上，并展示 RDS、Redis、OBS 与大模型服务的参与情况。</p>
+          </div>
+          <button class="ghost" id="refreshStatus">刷新状态</button>
+        </div>
+        <div class="status-grid" id="statusGrid"></div>
+
+        <div class="section-title">云同步演示</div>
+        <div class="sync-box">
+          <p>模拟鸿蒙端把收藏、笔记与足迹推送到云端，再从云端拉取。数据使用与鸿蒙端一致的版本号和墓碑机制。</p>
+          <div class="sync-actions">
+            <button class="primary" id="syncPush">推送到云端</button>
+            <button class="ghost" id="syncPull">从云端拉取</button>
+            <span id="syncMessage">尚未同步</span>
+          </div>
+          <pre id="syncPreview">{}</pre>
+        </div>
+
+        <div class="section-title">赛题要求对应</div>
+        <div class="requirement-grid">
+          <div class="req-card"><b>必选 1</b><span>华为云码道 CodeArts 代码智能体</span><small>见 codearts-skills 与 CODEARTS_EVIDENCE.md</small></div>
+          <div class="req-card"><b>必选 2</b><span>智能体 + Skills 关联 RDS / Redis</span><small>RDS 保存档案与会话，Redis 缓存问答与热点检索</small></div>
+          <div class="req-card"><b>必选 3</b><span>应用在华为云快速部署</span><small>见 DEPLOYMENT_HUAWEI_CLOUD.md</small></div>
+          <div class="req-card"><b>必选 4</b><span>云上可视化 Demo</span><small>当前页面即演示入口</small></div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <span class="footer-rule" aria-hidden="true"></span>
+        <span>九曲云档 · 黄河文化智能研学助手</span>
+        <span class="footer-seal" aria-hidden="true">河</span>
+        <span>华为云赛题一 · 云上可视化 Demo</span>
+        <span class="footer-rule" aria-hidden="true"></span>
+      </footer>
+    </section>
+  </main>
+
+  <div class="modal-mask" id="detailMask">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="detailClose" aria-label="关闭">×</button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <script src="hero.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "九曲云档主模块"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "九曲云档·黄河文化分布式数字档案"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "九曲云档"
+    },
+    {
+      "name": "distributed_reason",
+      "value": "用于在您的多台设备之间同步个人收藏与笔记数据"
+    },
+    {
+      "name": "widget_label",
+      "value": "九曲云档"
+    },
+    {
+      "name": "widget_desc",
+      "value": "桌面卡片：展示每日文化遗址推荐、收藏与笔记数量"
+    }
+  ]
+}

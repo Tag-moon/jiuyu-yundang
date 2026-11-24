@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {},
+  "lint": {
+    "ruleSet": "@arkts/arkts-config",
+    "rules": {
+      "arkts-no-any-unknown": "off"
+    }
+  }
+}
